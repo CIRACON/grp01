@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react'
 import { filterPeople, getPeople } from '../getPeople'
 //import {fetchPeople} from './searchResults'
 
-getPeople() // sets "persons" in getPeople.js
+//getPeople() // sets "persons" in getPeople.js
 function Search(){
     const [userInput, setUserInput] = useState("")
     const [searchRes, setSearchRes] = useState([])

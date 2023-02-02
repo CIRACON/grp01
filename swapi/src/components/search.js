@@ -1,6 +1,8 @@
 import React, {useState} from 'react'
-import { fetchPeople } from './searchResults'
+import { filterPeople, getPeople } from '../getPeople'
+//import {fetchPeople} from './searchResults'
 
+getPeople() // sets "persons" in getPeople.js
 function Search(){
     const [userInput, setUserInput] = useState("")
     const changeHandler = (event) =>{
@@ -8,7 +10,8 @@ function Search(){
         console.log(userInput)
     }
     return (
-        <form onSubmit={(e) => {e.preventDefault(); fetchPeople(userInput)}}>
+        //<form onSubmit={(e) => {e.preventDefault(); fetchPeople(userInput)}}>
+        <form onSubmit={(e) => {e.preventDefault(); filterPeople(userInput)}}>
             <label >Who are you looking for?</label>
             <input id="searchString" type={"text"} value={userInput} onChange={changeHandler}/>
             <input type="submit" value="Search" />

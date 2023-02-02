@@ -23,6 +23,7 @@ async function getPeople() {
   console.log("All the persons are ", persons)
   // return these instead
   //renderPeople(persons);
+  return persons; // use in fetchPersons, but filter please?
 }
 
 const getPersonIdFromUrl = (url) => {
@@ -32,12 +33,11 @@ const getPersonIdFromUrl = (url) => {
   return matches[1]
 }
 
-const filterPeople = () => {
-  const searchString = document.querySelector("#searchString").value;
-  const re = new RegExp(searchString, "i");
-  matchingPeople = persons.filter(person => re.test(person.name))
-  // send these to searchResults instead
-  //renderPeople(matchingPeople);
+// take a list of people and 
+const filterPeople = (searchParam, people) => {
+  const re = new RegExp(searchParam, "i");
+  matchingPeople = people.filter(person => re.test(person.name))
+  return matchingPeople;
 }
 
 // const renderPeople = persons => {
@@ -52,4 +52,4 @@ const filterPeople = () => {
 
 // const goToPersonPage = id => window.location = `/person.html?id=${id}`
 
-export default getPeople;
+export {getPeople, filterPeople};

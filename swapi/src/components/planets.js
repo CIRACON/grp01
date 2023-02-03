@@ -22,12 +22,12 @@ function Planets(){
         <>
         <h1>{planet.name}</h1>
         <h2>People</h2>
-        <ul>
-            {planet.residents?.map((resident,i)=><li key={i} onClick={()=>goToPerson(getIdFromUrl("people",resident))}>{getIdFromUrl("people",resident)}</li>)}
+        <ul style={styles.listContainer}>
+            {planet.residents?.map((resident,i)=><li key={i} style={styles.listItem} onClick={()=>goToPerson(getIdFromUrl("people",resident))}>{getIdFromUrl("people",resident)}</li>)}
         </ul>
         <h2>Films</h2>
         <ul>
-        {planet.films?.map((film, i)=><li key={i} onClick={()=>goToFilm(getIdFromUrl("films",film))}>{getIdFromUrl("films",film)}</li>)}
+        {planet.films?.map((film, i)=><li key={i} style={styles.listItem} onClick={()=>goToFilm(getIdFromUrl("films",film))}>{getIdFromUrl("films",film)}</li>)}
         </ul>
         </>
     )
@@ -38,6 +38,26 @@ const getIdFromUrl = (entityName, url) => {
     if (!matches) throw `Bad URL. Not a ${entityName} URL.`
     return matches[1]
   }
+
 function goToPerson(id) {window.location = `/person/${id}`}
 function goToFilm(id) {window.location = `/film/${id}`}
+
+const styles={
+    listItem:{
+        display: "inline-block",
+        textDecoration: "none",
+        fontSize: "1.1em",
+        padding: "10px",
+        margin: "10px",
+        backgroundColor: "lightblue",
+        borderRadius: "5px",
+        border: "1px solid darkblue"
+    },
+    listContainer:{
+        display:"flex",
+        flexWrap: "wrap",
+        justifyContent: "space-around",
+        padding:"0"
+    }
+}
 export default Planets

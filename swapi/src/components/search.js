@@ -19,12 +19,30 @@ function Search(){
             <input id="searchString" type={"text"} value={userInput} onChange={changeHandler}/>
             <input type="submit" value="Search" />
         </form>
-        <ul>
-            {searchRes.map((person, i) => <li key={i} onClick={()=>goToPerson(person.id)}>{person.name}</li>)}
+        <ul style={styles.listContainer}>
+            {searchRes.map((person, i) => <li key={i} style={styles.listItem} onClick={()=>goToPerson(person.id)}>{person.name}</li>)}
         </ul>
         </>
     )
 }
 function goToPerson(id) {window.location = `/person/${id}`}
 
+const styles={
+    listItem:{
+        display: "inline-block",
+        textDecoration: "none",
+        fontSize: "1.1em",
+        padding: "10px",
+        margin: "10px",
+        backgroundColor: "lightblue",
+        borderRadius: "5px",
+        border: "1px solid darkblue"
+    },
+    listContainer:{
+        display:"flex",
+        flexWrap: "wrap",
+        justifyContent: "space-around",
+        padding:"0"
+    }
+}
 export default Search;

@@ -5,6 +5,7 @@ import './App.css';
 import React from "react";
 import { BrowserRouter, Link, Route, Routes } from 'react-router-dom'
 import Planets from "./components/planets";
+import Film from "./components/film";
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
         <Routes>
           <Route path="/person/:id" element={<Person />}/>
           <Route path="/planet/:id" element={<Planets />}/>
+          <Route path="/film/:id" element={<Film />}/>
           <Route path="/" element={<Search />}/>
           
         </Routes>

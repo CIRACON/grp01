@@ -2,7 +2,6 @@ import React, {useEffect, useState} from 'react'
 import { filterPeople, getPeople } from '../getPeople'
 //import {fetchPeople} from './searchResults'
 
-//getPeople() // sets "persons" in getPeople.js
 function Search(){
     const [userInput, setUserInput] = useState("")
     const [searchRes, setSearchRes] = useState([])
@@ -10,6 +9,7 @@ function Search(){
         setUserInput(event.target.value)
         console.log(userInput)
     }
+    useEffect(()=>{getPeople()},[])// sets "persons" in getPeople.js
     useEffect(()=>{setSearchRes(filterPeople(userInput))},[userInput])
     return (
         //<form onSubmit={(e) => {e.preventDefault(); fetchPeople(userInput)}}>
@@ -20,10 +20,11 @@ function Search(){
             <input type="submit" value="Search" />
         </form>
         <ul>
-            {searchRes.map((person, i) => <li key={i}>{person.name}</li>)}
+            {searchRes.map((person, i) => <li key={i} onClick={()=>goToPerson(person.id)}>{person.name}</li>)}
         </ul>
         </>
     )
 }
+function goToPerson(id) {window.location = `/person/${id}`}
 
 export default Search;

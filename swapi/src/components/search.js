@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react'
 import { filterPeople, getPeople } from '../getPeople'
-//import {fetchPeople} from './searchResults'
+
 
 function Search(){
     const [userInput, setUserInput] = useState("")

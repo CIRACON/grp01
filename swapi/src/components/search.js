@@ -15,9 +15,9 @@ function Search(){
         //<form onSubmit={(e) => {e.preventDefault(); fetchPeople(userInput)}}>
         <>
         <form onSubmit={(e) => {e.preventDefault()}}>
-            <label >Who are you looking for?</label>
-            <input id="searchString" type={"text"} value={userInput} onChange={changeHandler}/>
-            <input type="submit" value="Search" />
+            <label style={styles.label}>Who are you looking for?</label>
+            <input style={styles.input} id="searchString" type={"text"} value={userInput} onChange={changeHandler}/>
+            
         </form>
         <ul style={styles.listContainer}>
             {searchRes.map((person, i) => <li key={i} style={styles.listItem} onClick={()=>goToPerson(person.id)}>{person.name}</li>)}
@@ -43,6 +43,21 @@ const styles={
         flexWrap: "wrap",
         justifyContent: "space-around",
         padding:"0"
+    },
+    label:{
+        fontWeight:"bold",
+        fonstSize:"1.1em"
+    },
+    input:{
+        display:'block',
+        width:'95%',
+        fontWeight:'bold',
+        fontSize:'1.1em',
+        lineHeight:'1.1em',
+        border:"none",
+        borderBottom:'2px solid darkblue',
+        outline:'none',
+        margin:'5px'
     }
 }
 export default Search;

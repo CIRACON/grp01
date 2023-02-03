@@ -26,6 +26,9 @@ function Planets(){
             {planet.residents?.map((resident,i)=><li key={i} onClick={()=>goToPerson(getIdFromUrl("people",resident))}>{getIdFromUrl("people",resident)}</li>)}
         </ul>
         <h2>Films</h2>
+        <ul>
+        {planet.films?.map((film, i)=><li key={i} onClick={()=>goToFilm(getIdFromUrl("films",film))}>{getIdFromUrl("films",film)}</li>)}
+        </ul>
         </>
     )
 }
@@ -36,5 +39,5 @@ const getIdFromUrl = (entityName, url) => {
     return matches[1]
   }
 function goToPerson(id) {window.location = `/person/${id}`}
-
+function goToFilm(id) {window.location = `/film/${id}`}
 export default Planets

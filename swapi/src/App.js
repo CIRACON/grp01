@@ -6,8 +6,6 @@ import React from "react";
 import { BrowserRouter, Link, Route, Routes } from 'react-router-dom'
 import Planets from "./components/planets";
 import Film from "./components/film";
-// import {MongoClient} from 'mongodb'
-
 
 
 function App() {

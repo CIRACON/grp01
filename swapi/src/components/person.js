@@ -33,12 +33,6 @@ function Person({}){
         </>
     )
 }
-const getIdFromUrl = (entityName, url) => {
-    const re = new RegExp(`.*${entityName}\/(\\d+).*`);
-    const matches = url?.match(re)
-    if (!matches) throw `Bad URL. Not a ${entityName} URL.`
-    return matches[1]
-  }
 
 function goToPlanet(id) {window.location = `/planet/${id}`}
 function goToFilm(id) {window.location = `/film/${id}`}

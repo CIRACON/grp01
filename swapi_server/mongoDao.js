@@ -1,11 +1,6 @@
 const mongodb = require("mongodb")
-
 const url = 'mongodb://localhost:27017/swapi'
-//const client = new MongoClient(url)
-//const dbName = 'swapi'
 let dbP 
-// const filmCollection = db.collection("films")
-// const planetCollection = db.collection("planets")
 
 mongodb.MongoClient.connect(url, function(err, db) {
     if (!err) {

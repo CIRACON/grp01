@@ -12,7 +12,6 @@ function Search(){
     useEffect(()=>{getPeople()},[])// sets "persons" in getPeople.js
     useEffect(()=>{setSearchRes(filterPeople(userInput))},[userInput])
     return (
-        //<form onSubmit={(e) => {e.preventDefault(); fetchPeople(userInput)}}>
         <>
         <form onSubmit={(e) => {e.preventDefault()}}>
             <label style={styles.label}>Who are you looking for?</label>

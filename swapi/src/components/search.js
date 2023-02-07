@@ -20,7 +20,7 @@ function Search(){
             
         </form>
         <ul style={styles.listContainer}>
-            {searchRes.map((person, i) => <li key={i} style={styles.listItem} onClick={()=>goToPerson(person.id)}>{person.name}</li>)}
+            {searchRes.map((person, i) => <li key={i} style={styles.listItem} onClick={()=>goToPerson(person.pk)}>{person.fields.name}</li>)}
         </ul>
         </>
     )

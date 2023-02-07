@@ -5,22 +5,22 @@ let matchingPeople = [];
 // document.addEventListener('DOMContentLoaded', getPeople)
 
 async function getPeople() {
-    let url = 'https://swapi.dev/api/people';
+    let url = 'http://localhost:4000/people';
 
     //let persons = [] // erase previous results. Without this the global var grows each time. Awful!
-    while (url) {
+    //while (url) {
         try {
             const fetchedPersons = await fetch(url)
                 .then(res => res.json())
-                .then(res => { url = res.next; return res })
-                .then(res => res.results)
-                .then(res => res.map(p => ({ ...p, id: +getPersonIdFromUrl(p.url) })))
+                //.then(res => { url = res.next; return res })
+                //.then(res => res.results)
+                // .then(res => res.map(p => ({ ...p, id: +getPersonIdFromUrl(p.url) })))
             await persons.push(...fetchedPersons);
         }
         catch (ex) {
             console.error("Error reading people.", ex.message);
         }
-    }
+    //}
     console.log("All the persons are ", persons)
     // return these instead
     //renderPeople(persons);
@@ -38,7 +38,7 @@ const getPersonIdFromUrl = (url) => {
 const filterPeople = (searchParam) => {
     const re = new RegExp(searchParam, "i");
     //matchingPeople = persons.filter(person => re.test(person.name))
-    matchingPeople = persons.filter(person => re.test(person.name))
+    matchingPeople = persons.filter(person => re.test(person.fields.name))
     console.log(matchingPeople)
     return matchingPeople;
 }

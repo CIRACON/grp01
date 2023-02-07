@@ -16,11 +16,9 @@ mongodb.MongoClient.connect(url, function(err, db) {
 });
 module.exports.getPerson = function (id, callback){
     const personCollection = dbP.collection("people")
-    console.log("getting person",id)
     personCollection.find({pk: +id})
     .toArray((err, person) => {
         if (!err) {
-            console.log(person)
             callback(null, person);
         } else {
           callback("Failed to find person", undefined);
@@ -39,7 +37,27 @@ module.exports.getAllPeople = function (callback){
         }
     })
 }
-
-
+module.exports.getPlanet = function (id, callback){
+    const planetCollection = dbP.collection("planets")
+    planetCollection.find({pk: +id})
+    .toArray((err, planet) => {
+        if (!err) {
+            callback(null, planet);
+        } else {
+          callback("Failed to find planet", undefined);
+        }
+    })
+}
+module.exports.getFilm = function (id, callback){
+    const filmCollection = dbP.collection("films")
+    filmCollection.find({pk: +id})
+    .toArray((err, film) => {
+        if (!err) {
+            callback(null, film);
+        } else {
+          callback("Failed to find film", undefined);
+        }
+    })
+}
 
 

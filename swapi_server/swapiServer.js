@@ -26,4 +26,24 @@ app.get('/people', function (req,res){
         }
     })
 })
+app.get('/planet/:id', function(req, res){
+    dao.getPlanet(req.params.id, (err, planet)=>{
+        if(!err){
+            res.send(planet)
+        }else{
+            res.statusCode=404
+            res.end()
+        }
+    })
+})
+app.get('/film/:id', function(req, res){
+    dao.getFilm(req.params.id, (err, film)=>{
+        if(!err){
+            res.send(film)
+        }else{
+            res.statusCode=404
+            res.end()
+        }
+    })
+})
 app.listen(4000)

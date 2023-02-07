@@ -23,12 +23,12 @@ function Person({}){
     if(!person){return null}
     return(
         <>
-        <h1>{person.name}</h1>
+        <h1>{person[0].fields.name}</h1>
         <h2>Homeworld</h2>
-        <p style={styles.home}onClick={()=>goToPlanet(getIdFromUrl("planets",person.homeworld))}>{getIdFromUrl("planets",person.homeworld)}</p>
+        <p style={styles.home}onClick={()=>goToPlanet(person[0].fields.homeworld)}>{person[0].fields.homeworld}</p>
         <h2>Films</h2>
         <ul>
-            {person.films?.map((film,i)=><li style={styles.listItem} key={i} onClick={()=>goToFilm(getIdFromUrl("films",film))}>{getIdFromUrl("films",film)}</li>)}
+            {/* {person.films?.map((film,i)=><li style={styles.listItem} key={i} onClick={()=>goToFilm(getIdFromUrl("films",film))}>{getIdFromUrl("films",film)}</li>)} */}
         </ul>
         </>
     )

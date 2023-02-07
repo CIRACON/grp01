@@ -5,7 +5,7 @@ import { useParams, SearchParams } from 'react-router-dom'
 function Person({}){
     const [person, setPerson] = useState()
     async function getPerson(id){
-        let url=`https://swapi.dev/api/people/${id}`
+        let url=`http://localhost:4000/person/${id}`
         try{
             const target = await fetch(url)
             .then(res =>res.json())

@@ -4,7 +4,7 @@ import { useParams} from 'react-router-dom'
 function Film(){
     const [film, setFilm] = useState()
     async function getFilm(id){
-        let url=`https://swapi.dev/api/films/${id}`
+        let url=`http://localhost:4000/film/${id}`
         try{
             const target = await fetch(url)
             .then(res =>res.json())
@@ -20,14 +20,14 @@ function Film(){
     if(!film) {return null}
     return(
         <>
-        <h1>{film.title}</h1>
+        <h1>{film[0].fields.title}</h1>
         <h2>People</h2>
         <ul style={styles.listContainer}>
-            {film.characters?.map((resident,i)=><li style={styles.listItem} key={i} onClick={()=>goToPerson(getIdFromUrl("people",resident))}>{getIdFromUrl("people",resident)}</li>)}
+            {film[0].fields.characters?.map((resident,i)=><li style={styles.listItem} key={i} onClick={()=>goToPerson(resident)}>{resident}</li>)}
         </ul>
         <h2>Planets</h2>
         <ul style={styles.listContainer}>
-        {film.planets?.map((planet, i)=><li style={styles.listItem} key={i} onClick={()=>goToPlanet(getIdFromUrl("planets",planet))}>{getIdFromUrl("planets",planet)}</li>)}
+        {film[0].fields.planets?.map((planet, i)=><li style={styles.listItem} key={i} onClick={()=>goToPlanet(planet)}>{planet}</li>)}
         </ul>
         </>
     )

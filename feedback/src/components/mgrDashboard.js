@@ -7,7 +7,7 @@ function MgrDashboard(){
     let {id} = useParams()
     const {empIds, setEmpIds} = useState("")
     async function getEmpIds(){
-        let url=`http://localhost:/${id}`
+        let url=`http://localhost:3001/${id}`
         const target= fetch(url)
         .then(res=>res.json())
         setEmpIds(target.employeeId)//get employee Ids from response

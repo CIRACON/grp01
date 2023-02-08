@@ -43,7 +43,8 @@ function NewLogin(){
         <form onSubmit={createUser}>
         <label>Password</label><br/>
         <input type={"text"} value={password} onChange={pChangeHandler}/>
-        <label>Manager's ID</label>
+        <br/>
+        <label>Manager's ID</label><br/>
         <input type={"text"} value={mgrId} onChange={mgrIdHandler}/>
         </form>
         </>

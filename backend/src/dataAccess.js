@@ -17,9 +17,18 @@ module.exports.call = async function call(operation, parameters, callback) {
 
     //Execute Operations
     // available operations: 
-    // ['initfeedback'|'clearfeedbacks'|'findallfeedbacks'|'findmanagerfeedback'|'findemployeefeedback' ]
+    // [initfeedback | clearfeedbacks | findallfeedbacks | findmanagerfeedback | findemployeefeedback | updatefeedback]
     let feedbacks;
     switch (operation.toLowerCase()) {
+
+        case 'updatefeedback':
+            await collection.updateOne(
+                { _id: parameters.feedback._id }, // TODO: no idea if this is correct, converted from biblio's isbn
+                {$set: parameters.feedback},
+                {upsert: true});
+            callback({ status: 'item updated:'+parameters.feedback._id });
+            break;
+
         case 'initfeedbacks':
             const initialRecords = [
                 {"_id": "63e3bf526deda6a1b3a67115", "text": "asdf asdf asdf", "employeeID": 3, "managerID": 4},

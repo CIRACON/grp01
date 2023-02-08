@@ -3,7 +3,7 @@ import {useParams} from 'react-router-dom'
 import GetFeedback from './getFeedback'
 import SendFeedback from './sendFeedback'
 
-function Dashboard(){
+function EmpDashboard(){
     let {id} = useParams()
     return(
         <>
@@ -13,4 +13,4 @@ function Dashboard(){
         </>
     )
 }
-export default Dashboard
+export default EmpDashboard

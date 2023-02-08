@@ -1,14 +1,14 @@
 import React from 'react'
 import { Route, Routes, BrowserRouter, } from 'react-router-dom'
 import Login from './components/login'
-import Dashboard from './components/dashboard';
+import EmpDashboard from './components/empDashboard';
 
 function App() {
   return (
     <React.Fragment>
       <BrowserRouter>
       <Routes>
-        <Route path="/:id" element={<Dashboard />}/>
+        <Route path="/employee/:id" element={<EmpDashboard />}/>
         <Route path="/" element={<Login />}/>
       </Routes>
       </BrowserRouter>

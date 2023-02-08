@@ -16,10 +16,11 @@ function MgrDashboard(){
     return(
         <>
         <h1>{id}</h1>
-        {empIds?.map((emp)=>{ /*theoretically: make div for 
+        {empIds?.map((emp,i)=>{ /*theoretically: make div for 
             each employee under the manager and get/send
             feedback comopnents for each*/
             <div style={styles.employee}>
+                <h2>Employee {i}</h2>
                 <GetFeedback id={id} type={"manager"} />
                 <SendFeedback mgrId={id} empId={emp} />
             </div>

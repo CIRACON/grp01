@@ -10,8 +10,8 @@ function Login(){
     const pChangeHandler = (event) =>{
         setPassword(event.target.value)
     }
-    const loginHandler = (id)=> {
-        window.location = `/${id}`
+    const loginHandler = (type,id)=> {
+        window.location = `${type}/${id}`
     }
     const empChangeHandler = (event)=>{ setEmpType(event.target.value)}
     return(
@@ -26,7 +26,7 @@ function Login(){
         <label>Password</label><br/>
         <input type={"text"} value={password} onChange={pChangeHandler}/>
         <br/>
-        <input type={"button"} value={"login"} onClick={()=>loginHandler(empId)}/>
+        <input type={"button"} value={"login"} onClick={()=>loginHandler(empType, empId)}/>
         </>
     )
 }

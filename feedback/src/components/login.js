@@ -12,8 +12,6 @@ function Login(){
     const loginHandler = (id)=> {
         window.location = `/${id}`
     }
-    // if (!empID) {return null}
-    // if(!password) {return null}
     return(
         <>
         <h1>Login</h1>

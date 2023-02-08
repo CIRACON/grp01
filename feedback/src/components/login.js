@@ -4,7 +4,6 @@ function Login(){
     const [empId, setEmpId]  = useState("")
     const [password, setPassword] = useState("")
     const [empType, setEmpType] = useState("")
-    const options = ["employee","manager"]
     const eChangeHandler = (event) =>{
         setEmpId(event.target.value)
     }
@@ -18,13 +17,13 @@ function Login(){
     return(
         <>
         <h1>Login</h1>
-        <label>Employee ID</label>
+        <label>Employee ID</label><br/>
         <input type={"text"} value={empId} onChange={eChangeHandler}/>
         <br/>
-        <label>Employee type - employee or manager</label>
+        <label>Employee type - employee or manager</label><br/>
         <input type={"text"} value={empType} onChange={empChangeHandler}/>
         <br/>
-        <label>Password</label>
+        <label>Password</label><br/>
         <input type={"text"} value={password} onChange={pChangeHandler}/>
         <br/>
         <input type={"button"} value={"login"} onClick={()=>loginHandler(empId)}/>

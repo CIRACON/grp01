@@ -1,10 +1,10 @@
 import React, {useState, useEffect} from 'react'
 
-function GetFeedback({id}){
+function GetFeedback({id,type}){
     const {feedbackList, setFeedbackList} = useState([])
     useEffect(()=>{getFeedback()},[])
     async function getFeedback(){
-        const url = `http://localhost:/${id}`
+        const url = `http://localhost:/${type}/${id}`
         try {
             const target = fetch(url)
             .then(res=> res.json())

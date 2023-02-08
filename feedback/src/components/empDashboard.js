@@ -5,11 +5,19 @@ import SendFeedback from './sendFeedback'
 
 function EmpDashboard(){
     let {id} = useParams()
+    const {mId, setMId} = useState("")
+    async function getMId(){
+        let url=`http://localhost:/${id}`
+        const target= fetch(url)
+        .then(res=>res.json())
+        setMId(target.managerId)//get manager Id from response
+    }
+    useEffect(()=>getMId(),[])
     return(
         <>
         <h1>{id}</h1>
-        <GetFeedback id={id}/>
-        <SendFeedback />
+        <GetFeedback id={id} type={"employee"} />
+        <SendFeedback empId={id} mgrId={mId}/>
         </>
     )
 }

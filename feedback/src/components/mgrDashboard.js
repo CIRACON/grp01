@@ -10,11 +10,30 @@ function MgrDashboard(){
         let url=`http://localhost:/${id}`
         const target= fetch(url)
         .then(res=>res.json())
-        setEmpIds(target.managerId)//get manager Id from response
+        setEmpIds(target.employeeId)//get employee Ids from response
     }
     useEffect(()=>getEmpIds(),[])
     return(
+        <>
         <h1>{id}</h1>
+        {empIds?.map((emp)=>{ /*theoretically: make div for 
+            each employee under the manager and get/send
+            feedback comopnents for each*/
+            <div style={styles.employee}>
+                <GetFeedback id={id} type={"manager"} />
+                <SendFeedback mgrId={id} empId={emp} />
+            </div>
+        })}
+        </>
     )
 }
+const styles={
+    employee:{
+        fontSize: "1.1em",
+        padding: "10px",
+        margin: "10px",
+        border: "1px solid darkblue"
+    }
+}
+
 export default MgrDashboard

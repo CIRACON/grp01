@@ -3,7 +3,6 @@ const { MongoClient } = require('mongodb')
 const url = "mongodb://localhost:27017"
 const client = new MongoClient(url)
 const dbName = "feedback"
-const collectionName = "feedback"
 
 // shamelessly stolen from MERN biblio lab page 106, or C:\LabFiles\biblio\data_access.js
 module.exports.call = async function call(operation, parameters, callback) {
@@ -12,17 +11,24 @@ module.exports.call = async function call(operation, parameters, callback) {
 
     // set the database to use
     const db = client.db(dbName);
-    // set the collection to use
-    const collection = db.collection(collectionName);
+    // set the collections to use
+    const feedbackCollection = db.collection("feedback");
+    const associationCollection = db.collection("associations"); // employees/managers. TODO: rename everywhere to workerCollection if DB is updated also?
 
     //Execute Operations
     // available operations: 
-    // [initfeedback | clearfeedbacks | findallfeedbacks | findmanagerfeedback | findemployeefeedback | updatefeedback]
+    // [ initfeedback
+    // | clearfeedbacks
+    // | findallfeedbacks
+    // | findmanagerfeedback
+    // | findemployeefeedback
+    // | updatefeedback
+    // | findWorker ]
     let feedbacks;
     switch (operation.toLowerCase()) {
 
         case 'updatefeedback':
-            await collection.updateOne(
+            await feedbackCollection.updateOne(
                 { _id: parameters.feedback._id }, // TODO: no idea if this is correct, converted from biblio's isbn
                 {$set: parameters.feedback},
                 {upsert: true});
@@ -35,31 +41,37 @@ module.exports.call = async function call(operation, parameters, callback) {
                 {"_id": "63e3bf526deda6a1b3a67116", "text": "asdf asdf asdf", "employeeID": 1, "managerID": 2},
                 {"_id": "63e3bf526deda6a1b3a67117", "text": "asdf asdf asdf", "employeeID": 5, "managerID": 6}
             ];
-            await collection.insertMany(initialRecords).then(
+            await feedbackCollection.insertMany(initialRecords).then(
                 (result)=>{ callback({ status: "feedback records have been initialized." })},
                 (reason)=>{ callback({ status: "error initializing feedback records" }) }
             );
             break;
 
         case 'clearfeedbacks':
-            await collection.deleteMany({}).then(
+            await feedbackCollection.deleteMany({}).then(
                 (result)=>{ callback({ status: "feedback records have been removed." })},
                 (reason)=>{ callback({ status: "error removing feedback records." }) }
             );
             break;
 
         case 'findallfeedbacks':
-            feedbacks = await collection.find({}).toArray();
+            feedbacks = await feedbackCollection.find({}).toArray();
             callback({ feedbacks: feedbacks });
             break;
 
+        // new. Not certain of associations collection layout, so "id" may be replaced with "_id" or similar tag. Also not certain if employee types will go in separate collections
+        case 'findWorker':
+            const worker = await associationCollection.findOne({"id": parameters.workerID})
+            callback({worker: worker})
+            break;
+
         case 'findmanagerfeedback':
-            feedbacks = await collection.find({ managerID: parameters.managerID });
+            feedbacks = await feedbackCollection.find({ managerID: parameters.managerID });
             callback({ feedbacks: feedbacks });
             break;
 
         case 'findemployeefeedback':
-            feedbacks = await collection.find({ employeeID: parameters.employeeID });
+            feedbacks = await feedbackCollection.find({ employeeID: parameters.employeeID });
             callback({ feedbacks: feedbacks });
             break;
 

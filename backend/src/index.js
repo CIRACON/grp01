@@ -5,6 +5,16 @@ const dao = require("./dataAccess") // database access object
 
 app.use(express.json()) // parse JSON body
 
+app.get('/:employeeType/:id', function(req, res) {
+    if (req.params.employeeType !== 'manager' || req.params.employeeType !== 'employee') {
+        res.statusCode = 404
+        res.end()
+        return;
+    }
+    let feedbackResults = dao.call('findfeedback', {"workerID": req.params.id, })
+})
+
+// TODO: clobbered by '/:employeeType/:id', unnecessary (can delete)
 app.get("/feedback/managers/:id", function(req, res) {
     let feedbackResults = dao.getManagerFeedback(req.params.id)
     if (feedbackResults === undefined) {
@@ -16,7 +26,7 @@ app.get("/feedback/managers/:id", function(req, res) {
     }
 })
 
-// update
+// TODO: replace with POST to submit new feedback, PUT modifies existing feedback post
 app.put("/feedback/:manager", (req, res) => {
     if (req.params.manager === undefined || req.body === undefined) {
         res.statusCode = 500;

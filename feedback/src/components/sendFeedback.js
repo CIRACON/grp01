@@ -11,7 +11,7 @@ function SendFeedback({empId, mgrId}){
             "employeeID":+empId,
             "managerID":+mgrId
         }
-        let url="http://localhost:/"//server route for posting to managerfeedback collection
+        let url="http://localhost:3001/"//server route for posting to managerfeedback collection
         try{
             const postMessage = await fetch(url,{
                 method:'post',

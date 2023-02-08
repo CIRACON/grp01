@@ -4,7 +4,7 @@ import GetFeedback from './getFeedback'
 import SendFeedback from './sendFeedback'
 
 function EmpDashboard(){
-    let {id} = useParams()
+    const {id} = useParams()
     const {mId, setMId} = useState("")
     async function getMId(){
         let url=`http://localhost:3001/${id}`

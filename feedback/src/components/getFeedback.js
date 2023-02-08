@@ -16,10 +16,17 @@ function GetFeedback({id}){
     return (
         <>
         <ul>
-            {feedbackList?.map((message, i)=><li key={i}>{message.text}</li>)}
+            {feedbackList?.map((message, i)=><li key={i} style={styles.message}>{message.text}</li>)}
         </ul>
         </>
     )
 }
-
+const styles = {
+    message:{
+        border:'solid 1px black',
+        fontSize: "1.1em",
+        padding: "10px",
+        margin: "10px",
+    }
+}
 export default GetFeedback

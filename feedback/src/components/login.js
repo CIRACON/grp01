@@ -12,7 +12,7 @@ function Login(){
         setPassword(event.target.value)
     }
     const loginHandler = (type,id)=> {
-        window.location = `${type}/${id}`
+        window.location = `/${type}/${id}`
     }
     const empChangeHandler = (event)=>{ setEmpType(event.target.value)}
     return(

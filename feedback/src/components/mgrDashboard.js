@@ -5,26 +5,26 @@ import SendFeedback from './sendFeedback'
 
 function MgrDashboard(){
     const {id} = useParams()
-    const {empIds, setEmpIds} = useState([])
-    async function getEmpIds(){
+    const [empIds, setEmpIds] = useState([])
+    useEffect(()=>async function getEmpIds(){
         const url=`http://localhost:3001/employeesof/${id}`
         const target= await fetch(url)
         .then(res=>res.json())
-        setEmpIds(target)//get employee Ids from response
-    }
-    useEffect(()=>getEmpIds(),[])
+        setEmpIds(target.map(emp=>emp.id))//get employee Ids from response
+    },[])
+    console.log(empIds)
     return(
         <>
         <h1>{id}</h1>
-        {empIds?.map((emp,i)=>{ /*theoretically: make div for 
+        {empIds.map((emp,i)=> /*theoretically: make div for 
             each employee under the manager and get/send
             feedback comopnents for each*/
-            <div style={styles.employee}>
+            <div style={styles.employee} key={i}>
                 <h2>Employee {i}</h2>
                 <GetFeedback id={id} type={"manager"} />
                 <SendFeedback mgrId={id} empId={emp} />
             </div>
-        })}
+        )}
         </>
     )
 }

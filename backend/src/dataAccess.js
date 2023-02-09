@@ -20,6 +20,16 @@ module.exports.call = async function call(operation, parameters, callback) {
     let feedbacks;
     switch (operation.toLowerCase()) {
 
+        case 'postfeedback':
+            let feedback = parameters.feedback.text
+            let employeeID = parameters.feedback.employeeID
+            let managerID = parameters.feedback.managerID
+            await feedbackCollection.insertOne({"text": feedback, "employeeID": employeeID, "managerID": managerID}).then(
+                (result) => {callback({status: "feedback added"})},
+                (reason) => {callback({status: "error when adding feedback"})}
+            )
+            break;
+
         case 'findallemployees':
         case 'employees':
             employees = await associationCollection.find({}).toArray()
@@ -74,7 +84,7 @@ module.exports.call = async function call(operation, parameters, callback) {
             break;
 
         case 'newemployee':
-            associationCollection.insertOne({"id": parameters.id, "managerID": parameters.managerID})
+            await associationCollection.insertOne({"id": parameters.id, "managerID": parameters.managerID})
             break;
 
         case 'findmanagerfeedback':

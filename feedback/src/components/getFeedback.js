@@ -1,19 +1,20 @@
 import React, {useState, useEffect} from 'react'
 
 function GetFeedback({id,type}){
-    const {feedbackList, setFeedbackList} = useState([])
+    const [feedbackList, setFeedbackList] = useState([])
     useEffect(()=>
         async function getFeedback(){
         const url = `http://localhost:3001/${type}feedback/${id}`
         try {
             const target = await fetch(url)
             .then(res=> res.json())
-            console.log(target)
-            setFeedbackList(...target)
+            console.log(typeof(target))
+            setFeedbackList(target)
         }catch (ex) {
             console.error("Error getting feedback.", ex.message);
         }
     },[])
+    console.log(feedbackList)
     return (
         <>
         <ul>

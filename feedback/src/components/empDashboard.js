@@ -5,7 +5,7 @@ import SendFeedback from './sendFeedback'
 
 function EmpDashboard(){
     const {pid} = useParams()
-    const {mId, setMId} = useState("")
+    const [mId, setMId] = useState("")
     useEffect(()=>async function getMId(){
         let url=`http://localhost:3001/employee/${pid}`
         const target= await fetch(url)

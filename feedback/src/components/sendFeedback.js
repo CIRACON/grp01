@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react'
 
 function SendFeedback({empId, mgrId}){
-    const {message, setMessage}=useState("")
+    const [message, setMessage]=useState("")
     const messageHandler=(event)=>{
         setMessage(event.target.value)
     }

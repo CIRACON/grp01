@@ -1,9 +1,11 @@
 const express = require('express')
 const bodyParser = require('body-parser')
+const cors=require('cors')
 const app = express()
 const dao = require("./dataAccess") // database access object
 
 app.use(express.json()) // parse JSON body
+app.use(cors())
 
 app.get("/employee/:id", function(req, res) {
     if (req.params.id === undefined) {

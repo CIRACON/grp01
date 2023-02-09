@@ -7,8 +7,8 @@ function GetFeedback({id,type}){
         const url = `http://localhost:3001/${type}feedback/${id}`
         try {
             const target = fetch(url)
-            .then(res=> res.json())
-            setFeedbackList(target)
+            //.then(res=> res.json())
+            setFeedbackList(...target)
         }catch (ex) {
             console.error("Error getting feedback.", ex.message);
         }

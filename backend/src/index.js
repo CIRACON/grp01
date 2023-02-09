@@ -18,6 +18,45 @@ app.get("/employee/:id", function(req, res) {
     }
 })
 
+app.get("/employeefeedback/:id", function(req, res) {
+    if (req.params.id === undefined) {
+        res.statusCode = 404
+        res.end()
+        return
+    }
+    else {
+        dao.call("employeefeedback", {'id': req.params.id}, (result) => {
+            res.send(result.employeeFeedback)
+        })
+    }
+})
+
+app.get("/managerfeedback/:id", function(req, res) {
+    if (req.params.id === undefined) {
+        res.statusCode = 404
+        res.end()
+        return
+    }
+    else {
+        dao.call("managerfeedback", {'id': req.params.id}, (result) => {
+            res.send(result.managerFeedback)
+        })
+    }
+})
+
+app.get("/employeesof/:id", function(req, res) {
+    if (req.params.id === undefined) {
+        res.statusCode = 404
+        res.end()
+        return
+    }
+    else {
+        dao.call("employeesof", {"id": req.params.id}, (result) => {
+            res.send(result.employeesOfManager)
+        })
+    }
+})
+
 // TODO: split into two requests, one for manager and one for employee, for feedback
 app.get('/:employeeType/:id', function(req, res) {
     if (req.params.employeeType !== 'manager' || req.params.employeeType !== 'employee') {

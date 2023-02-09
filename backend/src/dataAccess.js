@@ -77,23 +77,29 @@ module.exports.call = async function call(operation, parameters, callback) {
             callback({ feedbacks: feedbacks });
             break;
 
+        case 'managerfeedback':
+            //const managerFeedback = await feedbackCollection.findOne({'managerID': +parameters.id})
+            const managerFeedback = await feedbackCollection.find({'managerID': +parameters.id}).toArray()
+            callback({managerFeedback: managerFeedback})
+            break;
+
         case 'findworker':
-            const worker = await associationCollection.find({"id": +parameters.id})
+            const worker = await associationCollection.findOne({"id": +parameters.id})
             callback({worker: worker})
             break;
 
         case 'newemployee':
-            await associationCollection.insertOne({"id": parameters.id, "managerID": parameters.managerID})
+            await associationCollection.insertOne({"id": +parameters.id, "managerID": +parameters.managerID})
             break;
 
-        case 'findmanagerfeedback':
-            feedbacks = await feedbackCollection.find({ managerID: parameters.managerID });
-            callback({ feedbacks: feedbacks });
+        case 'employeefeedback':
+            const employeeFeedback = await feedbackCollection.find({'employeeID': +parameters.id}).toArray()
+            callback({employeeFeedback: employeeFeedback})
             break;
-
-        case 'findemployeefeedback':
-            feedbacks = await feedbackCollection.find({ employeeID: parameters.employeeID });
-            callback({ feedbacks: feedbacks });
+        
+        case 'employeesof':
+            const employeesOfManager = await associationCollection.find({"managerID": +parameters.id}).toArray()
+            callback({employeesOfManager: employeesOfManager})
             break;
 
         default:

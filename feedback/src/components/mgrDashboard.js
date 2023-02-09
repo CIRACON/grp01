@@ -21,7 +21,7 @@ function MgrDashboard(){
             feedback comopnents for each*/
             <div style={styles.employee} key={i}>
                 <h2>Employee {i}</h2>
-                <GetFeedback id={id} type={"manager"} />
+                <GetFeedback id={emp} type={"employee"} />
                 <SendFeedback mgrId={id} empId={emp} />
             </div>
         )}

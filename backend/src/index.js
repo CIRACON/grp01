@@ -5,6 +5,20 @@ const dao = require("./dataAccess") // database access object
 
 app.use(express.json()) // parse JSON body
 
+app.get("/employee/:id", function(req, res) {
+    if (req.params.id === undefined) {
+        res.statusCode = 404
+        res.end()
+        return
+    }
+    else {
+        dao.call("findworker", {'id': req.params.id}, (result) => {
+            res.send(result.worker)
+        })
+    }
+})
+
+// TODO: split into two requests, one for manager and one for employee, for feedback
 app.get('/:employeeType/:id', function(req, res) {
     if (req.params.employeeType !== 'manager' || req.params.employeeType !== 'employee') {
         res.statusCode = 404

@@ -44,7 +44,7 @@ module.exports.call = async function call(operation, parameters, callback) {
                 },
                 {
                     "id": 2,
-                    "employeeIDs": [1]
+                    "managerID": null
                 },
             ]
             await associationCollection.insertMany(initialAssociations).then(
@@ -77,9 +77,8 @@ module.exports.call = async function call(operation, parameters, callback) {
             callback({ feedbacks: feedbacks });
             break;
 
-        // new. Not certain of associations collection layout, so "id" may be replaced with "_id" or similar tag. Also not certain if employee types will go in separate collections
         case 'findworker':
-            const worker = await associationCollection.findOne({"id": parameters.id})
+            const worker = await associationCollection.find({"id": +parameters.id})
             callback({worker: worker})
             break;
 

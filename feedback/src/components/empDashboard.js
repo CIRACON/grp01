@@ -7,7 +7,7 @@ function EmpDashboard(){
     const {id} = useParams()
     const {mId, setMId} = useState("")
     async function getMId(){
-        let url=`http://localhost:3001/employeeAssoc/${id}`
+        let url=`http://localhost:3001/employee/${id}`
         const target= fetch(url)
         .then(res=>res.json())
         setMId(target.managerId)//get manager Id from response

@@ -5,12 +5,12 @@ import SendFeedback from './sendFeedback'
 
 function MgrDashboard(){
     const {id} = useParams()
-    const {empIds, setEmpIds} = useState("")
+    const {empIds, setEmpIds} = useState([])
     async function getEmpIds(){
-        const url=`http://localhost:3001/managerAssoc/${id}`
+        const url=`http://localhost:3001/employeesof/${id}`
         const target= fetch(url)
         .then(res=>res.json())
-        setEmpIds(target.employeeId)//get employee Ids from response
+        setEmpIds(target)//get employee Ids from response
     }
     useEffect(()=>getEmpIds(),[])
     return(

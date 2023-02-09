@@ -11,11 +11,11 @@ function NewLogin(){
         setMgrId(event.target.value)
     }
     async function createUser(){
-        const postUrl= 'http://localhost:3001/newEmployee'
+        const postUrl= 'http://localhost:3001/newemployee'
         const getUrl = 'http://localhost:3001/employees'
         try{
             let allEmps = await fetch(getUrl)
-                .then(res=>res.json())
+                //.then(res=>res.json())
                 .then(res=>res.length)
             setEmpId(allEmps+1)
         }catch{

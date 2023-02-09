@@ -15,31 +15,24 @@ module.exports.call = async function call(operation, parameters, callback) {
     const feedbackCollection = db.collection("feedback");
     const associationCollection = db.collection("associations"); // employees/managers. TODO: rename everywhere to workerCollection if DB is updated also?
 
-    //Execute Operations
-    // available operations: 
-    // [ initfeedback
-    // | clearfeedbacks
-    // | findallfeedbacks
-    // | findmanagerfeedback
-    // | findemployeefeedback
-    // | updatefeedback
-    // | findWorker ]
+    // Execute Operations
+    // TODO: split switch-case into actual function module exports
     let feedbacks;
     switch (operation.toLowerCase()) {
 
-        case 'updatefeedback':
-            await feedbackCollection.updateOne(
-                { _id: parameters.feedback._id }, // TODO: no idea if this is correct, converted from biblio's isbn
-                {$set: parameters.feedback},
-                {upsert: true});
-            callback({ status: 'item updated:'+parameters.feedback._id });
+        case 'getallemployees':
+        employees = await associationCollection.find({}).toArray()
+        callback({employees: employees})
             break;
 
         case 'initfeedbacks':
             const initialRecords = [
-                {"_id": "63e3bf526deda6a1b3a67115", "text": "asdf asdf asdf", "employeeID": 3, "managerID": 4},
-                {"_id": "63e3bf526deda6a1b3a67116", "text": "asdf asdf asdf", "employeeID": 1, "managerID": 2},
-                {"_id": "63e3bf526deda6a1b3a67117", "text": "asdf asdf asdf", "employeeID": 5, "managerID": 6}
+                // {"_id": "63e3bf526deda6a1b3a67115", "text": "asdf asdf qwerty", "employeeID": 3, "managerID": 4},
+                // {"_id": "63e3bf526deda6a1b3a67116", "text": "qwerty asdf asdf", "employeeID": 1, "managerID": 2},
+                // {"_id": "63e3bf526deda6a1b3a67117", "text": "asdf qwerty asdf", "employeeID": 5, "managerID": 6}
+                {"text": "qwerty asdf asdf", "employeeID": 1, "managerID": 2},
+                {"text": "asdf asdf qwerty", "employeeID": 3, "managerID": 4},
+                {"text": "asdf qwerty asdf", "employeeID": 5, "managerID": 6}
             ];
             await feedbackCollection.insertMany(initialRecords).then(
                 (result)=>{ callback({ status: "feedback records have been initialized." })},
@@ -60,9 +53,13 @@ module.exports.call = async function call(operation, parameters, callback) {
             break;
 
         // new. Not certain of associations collection layout, so "id" may be replaced with "_id" or similar tag. Also not certain if employee types will go in separate collections
-        case 'findWorker':
-            const worker = await associationCollection.findOne({"id": parameters.workerID})
+        case 'findworker':
+            const worker = await associationCollection.findOne({"_id": parameters.workerID})
             callback({worker: worker})
+            break;
+
+        case 'newemployee':
+            associationCollection.insert({"_id": parameters.employeeID, "managerID": parameters.managerID})
             break;
 
         case 'findmanagerfeedback':

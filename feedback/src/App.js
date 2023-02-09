@@ -10,7 +10,7 @@ function App() {
     <React.Fragment>
       <BrowserRouter>
       <Routes>
-        <Route path="/employee/:id" element={<EmpDashboard />}/>
+        <Route path="/employee/:pid" element={<EmpDashboard />}/>
         <Route path="/manager/:id" element={<MgrDashboard />}/>
         <Route path="/newUser" element={<NewLogin />}/>
         <Route path="/" element={<Login />}/>

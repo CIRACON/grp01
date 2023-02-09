@@ -4,21 +4,21 @@ import GetFeedback from './getFeedback'
 import SendFeedback from './sendFeedback'
 
 function EmpDashboard(){
-    const {id} = useParams()
+    const {pid} = useParams()
     const {mId, setMId} = useState("")
     useEffect(()=>async function getMId(){
-        let url=`http://localhost:3001/employee/${id}`
-        const target= fetch(url)
+        let url=`http://localhost:3001/employee/${pid}`
+        const target= await fetch(url)
             .then(res=>res.json())
-        console.log(typeof(target.managerId))
+        console.log(target.managerId)
         setMId(target.managerId)//get manager Id from response
     },[])
     return(
         <>
-        <h1>{id}</h1>
-        <GetFeedback id={id} type={"employee"}/>
+        <h1>{pid}</h1>
+        <GetFeedback id={pid} type={"employee"}/>
         <div style={styles.section}>
-        <SendFeedback empId={id} mgrId={mId}/>
+        <SendFeedback empId={pid} mgrId={mId}/>
         </div>
         </>
     )

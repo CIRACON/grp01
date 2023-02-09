@@ -32,7 +32,7 @@ function NewLogin(){
                 headers: {'Content-Type': 'application/json'},
                 body:JSON.stringify(newEmp)
             })
-            //window.location = `/employee/${empId}`)
+            window.location = `/employee/${empId}`
         } catch{
             console.log("Could not enter new employee.")
         }

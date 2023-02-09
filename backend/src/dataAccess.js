@@ -2,7 +2,36 @@ const { MongoClient } = require('mongodb')
 
 const url = "mongodb://localhost:27017"
 const client = new MongoClient(url)
-const dbName = "feedback"
+const db = client.db("feedback");
+const feedbackCollection = db.collection("feedback");
+const associationCollection = db.collection("associations"); // employees/managers. TODO: rename everywhere to workerCollection if DB is updated also?
+
+module.exports.getEmployeeById = async function(id, callback) {
+    callback({employee: await associationCollection.findOne({"id": +id})})
+}
+
+module.exports.getEmployeeFeedback = async function(id, callback) {
+    callback({employeeFeedback: await feedbackCollection.find({'employeeID': +id}).toArray()})
+}
+
+module.exports.getManagerFeedback = async function(id, callback) {
+    callback({managerFeedback: await feedbackCollection.find({ 'managerID': +id }).toArray()})
+}
+
+module.exports.getEmployeesOfManager = async function(id, callback) {
+    callback({employeesOfManager: await associationCollection.find({ "managerID": +id }).toArray()})
+}
+
+module.exports.postFeedback = async function (requestBody, callback) {
+    await feedbackCollection.insertOne({
+        "text": requestBody.text,
+        "employeeID": requestBody.employeeID,
+        "managerID": requestBody.managerID
+    }).then(
+        (result) => { callback({ status: "feedback added" }) },
+        (reason) => { callback({ status: "error when adding feedback" }) }
+    )
+}
 
 // shamelessly stolen from MERN biblio lab page 106, or C:\LabFiles\biblio\data_access.js
 module.exports.call = async function call(operation, parameters, callback) {

@@ -13,11 +13,9 @@ app.get("/employee/:id", function(req, res) {
         res.end()
         return
     }
-    else {
-        dao.call("findworker", {'id': req.params.id}, (result) => {
-            res.send(result.worker)
-        })
-    }
+    dao.getEmployeeById(req.params.id, (result) => {
+        res.send(result.employee)
+    })
 })
 
 app.get("/employeefeedback/:id", function(req, res) {
@@ -26,11 +24,9 @@ app.get("/employeefeedback/:id", function(req, res) {
         res.end()
         return
     }
-    else {
-        dao.call("employeefeedback", {'id': req.params.id}, (result) => {
-            res.send(result.employeeFeedback)
-        })
-    }
+    dao.getEmployeeFeedback(req.params.id, (result) => {
+        res.send(result.employeeFeedback)
+    })
 })
 
 app.get("/managerfeedback/:id", function(req, res) {
@@ -39,11 +35,9 @@ app.get("/managerfeedback/:id", function(req, res) {
         res.end()
         return
     }
-    else {
-        dao.call("managerfeedback", {'id': req.params.id}, (result) => {
-            res.send(result.managerFeedback)
-        })
-    }
+    dao.getManagerFeedback(req.params.id, (result) => {
+        res.send(result.managerFeedback)
+    })
 })
 
 app.get("/employeesof/:id", function(req, res) {
@@ -52,24 +46,21 @@ app.get("/employeesof/:id", function(req, res) {
         res.end()
         return
     }
-    else {
-        dao.call("employeesof", {"id": req.params.id}, (result) => {
-            res.send(result.employeesOfManager)
-        })
-    }
+    dao.getEmployeesOfManager(req.params.id, (result => {
+        res.send(result.employeesOfManager)
+    }))
 })
 
-// TODO: split into two requests, one for manager and one for employee, for feedback
-app.get('/:employeeType/:id', function(req, res) {
-    if (req.params.employeeType !== 'manager' || req.params.employeeType !== 'employee') {
-        res.statusCode = 404
-        res.end()
-        return
-    }
-    let feedbackResults = dao.call('findfeedback', {"workerID": req.params.id})
-})
+// // TODO: split into two requests, one for manager and one for employee, for feedback
+// app.get('/:employeeType/:id', function(req, res) {
+//     if (req.params.employeeType !== 'manager' || req.params.employeeType !== 'employee') {
+//         res.statusCode = 404
+//         res.end()
+//         return
+//     }
+//     let feedbackResults = dao.call('findfeedback', {"workerID": req.params.id})
+// })
 
-// TODO: replace with POST to submit new feedback, PUT modifies existing feedback post
 app.post("/feedback", (req, res) => {
     if (req.body === undefined) {
         res.statusCode = 500;
@@ -77,7 +68,8 @@ app.post("/feedback", (req, res) => {
         return;
     }
     // make call to db
-    dao.call('postfeedback', {feedback: req.body}, (result) => {
+    //dao.call('postfeedback', {feedback: req.body}, (result) => {
+    dao.call(req.body, (result) => {
         if (result.status !== undefined) {
             res.send(result.status);
         } else {

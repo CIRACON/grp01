@@ -10,8 +10,7 @@ function EmpDashboard(){
         let url=`http://localhost:3001/employee/${pid}`
         const target= await fetch(url)
             .then(res=>res.json())
-        console.log(target.managerId)
-        setMId(target.managerId)//get manager Id from response
+        setMId(target.managerID)//get manager Id from response
     },[])
     return(
         <>

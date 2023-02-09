@@ -39,7 +39,7 @@ module.exports.call = async function call(operation, parameters, callback) {
     await client.connect();
 
     // set the database to use
-    const db = client.db(dbName);
+    const db = client.db("feedback");
     // set the collections to use
     const feedbackCollection = db.collection("feedback");
     const associationCollection = db.collection("associations"); // employees/managers. TODO: rename everywhere to workerCollection if DB is updated also?

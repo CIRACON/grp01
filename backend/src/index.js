@@ -69,13 +69,13 @@ app.post("/feedback", (req, res) => {
     }
     // make call to db
     //dao.call('postfeedback', {feedback: req.body}, (result) => {
-    dao.call(req.body, (result) => {
-        if (result.status !== undefined) {
-            res.send(result.status);
-        } else {
+    dao.postFeedback(req.body, (result) => {
+        if (result.status === undefined) {
             res.statusCode = 500;
-            res.end();
+            res.end()
+            return
         }
+        res.send(result.status);
     });
 });
 
@@ -86,17 +86,17 @@ app.get("/initemployees", (req, res) => {
     })
 })
 
-app.get("/findallfeedbacks", (req, res) => {
-    dao.call("findallfeedbacks", {}, (result) => {
-        console.log(result.status)
-        res.send(result.feedbacks)
-    })
-})
-
 app.get("/initfeedbacks", (req, res) => {
     dao.call("initfeedbacks", {}, (result) => {
         console.log(result.status)
         res.send("init complete")
+    })
+})
+
+app.get("/findallfeedbacks", (req, res) => {
+    dao.call("findallfeedbacks", {}, (result) => {
+        console.log(result.status)
+        res.send(result.feedbacks)
     })
 })
 

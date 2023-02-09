@@ -1,5 +1,4 @@
-import React, {useState, useEffect} from 'react'
-//import Link from 'react-router-dom'
+import React, {useState} from 'react'
 
 function Login(){
     const [empId, setEmpId]  = useState("")
@@ -29,8 +28,8 @@ function Login(){
         <br/>
         <input type={"button"} value={"login"} onClick={()=>loginHandler(empType, empId)}/>
         
-        <h1>New User?</h1>
-        <p onClick={()=>window.location = `/newUser`}>Create employee profile</p>
+        <h3>New User?</h3>
+        <button onClick={()=>window.location = `/newUser`}>Create employee profile</button>
 
         </>
     )

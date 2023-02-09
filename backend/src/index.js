@@ -9,7 +9,7 @@ app.get('/:employeeType/:id', function(req, res) {
     if (req.params.employeeType !== 'manager' || req.params.employeeType !== 'employee') {
         res.statusCode = 404
         res.end()
-        return;
+        return
     }
     let feedbackResults = dao.call('findfeedback', {"workerID": req.params.id})
 })
@@ -55,6 +55,13 @@ app.put("/feedback/:manager", (req, res) => {
     });
 });
 
+app.get("/initemployees", (req, res) => {
+    dao.call("initemployees", {}, (result) => {
+        console.log(result.status)
+        res.send("init complete")
+    })
+})
+
 app.get("/initfeedbacks", (req, res) => {
     dao.call("initfeedbacks", {}, (result) => {
         console.log(result.status)
@@ -63,9 +70,9 @@ app.get("/initfeedbacks", (req, res) => {
 })
 
 app.get("/employees", (req, res) => {
-    dao.call("findallemployees", {}, (result) => {
+    dao.call("employees", {}, (result) => {
         if (result.employees !== undefined) {
-            res.send(result.books)
+            res.send(result.employees)
         }
         else {
             res.statusCode = 404
@@ -75,12 +82,12 @@ app.get("/employees", (req, res) => {
 })
 
 app.post("/newemployee", (req, res) => {
-    if (req.body.employeeID === undefined || req.body.managerID === undefined) {
+    if (req.body.id === undefined || req.body.managerID === undefined) {
         res.statusCode = 500
         res.end()
     }
     else {
-        dao.call('newemployee', {"employeeID": req.body.employeeID, "managerID": req.body.managerID}, (result) => {
+        dao.call('newemployee', {"id": req.body.id, "managerID": req.body.managerID}, (result) => {
             if (result.status !== undefined) {
                 res.send(result.status)
             }
@@ -91,6 +98,5 @@ app.post("/newemployee", (req, res) => {
         })
     }
 })
-
 
 app.listen(3001) // open port for page

@@ -89,12 +89,17 @@ module.exports.call = async function call(operation, parameters, callback) {
             break;
 
         case 'newemployee':
-            await associationCollection.insertOne({"id": parameters.id, "managerID": parameters.managerID})
+            await associationCollection.insertOne({"id": +parameters.id, "managerID": +parameters.managerID})
             break;
 
         case 'employeefeedback':
             const employeeFeedback = await feedbackCollection.find({'employeeID': +parameters.id}).toArray()
             callback({employeeFeedback: employeeFeedback})
+            break;
+        
+        case 'employeesof':
+            const employeesOfManager = await associationCollection.find({"managerID": +parameters.id}).toArray()
+            callback({employeesOfManager: employeesOfManager})
             break;
 
         default:

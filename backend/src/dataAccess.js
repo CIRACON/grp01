@@ -78,7 +78,7 @@ module.exports.call = async function call(operation, parameters, callback) {
             break;
 
         case 'findworker':
-            const worker = await associationCollection.find({"id": +parameters.id})
+            const worker = await associationCollection.findOne({"id": +parameters.id})
             callback({worker: worker})
             break;
 

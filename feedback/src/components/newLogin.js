@@ -32,17 +32,20 @@ function NewLogin(){
                 headers: {'Content-Type': 'application/json'},
                 body:JSON.stringify(newEmp)
             })
+            userRedirect()
             
         } catch{
             console.log("Could not enter new employee.")
         }
         
     }
-    const userRedirect=()=>{window.location = `/employee/${newEmp.id}`}
+    const userRedirect=()=>{
+        console.log("redirect to", newEmp.id)
+        window.location = `/employee/${newEmp.id}`}
     return(
         <div style={styles.container}>
         <h1>Create user profile</h1>
-        <form onSubmit={(e)=>{e.preventDefault();createUser();userRedirect()}}>
+        <form onSubmit={(e)=>{e.preventDefault();createUser()}}>
         <label style={styles.label}>Password</label><br/>
         <input type={"text"} value={password} onChange={pChangeHandler} style={styles.input}/>
         <br/>

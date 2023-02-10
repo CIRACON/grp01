@@ -16,10 +16,11 @@ function GetFeedback({ id, type }) {
             }
         }, [])
     console.log(feedbackList)
+    console.log("id:",id)
     return (
         <>
             <ul>
-                {feedbackList?.map((message, i) => <li key={i} style={styles.message}>{message.text}</li>)}
+                {feedbackList?.map((message, i) => <li key={i} style={message.sender===id?styles.empMessage:styles.message}>{message.text}</li>)}
             </ul>
         </>
     )
@@ -32,6 +33,15 @@ const styles = {
         margin: "10px",
         width: "50%",
         listStyleType:"none"
+    },
+    empMessage: {
+        border: 'solid 1px black',
+        fontSize: "1.1em",
+        padding: "10px",
+        margin: "10px",
+        width: "50%",
+        listStyleType:"none",
+        backgroundColor:"lightblue"
     }
 }
 export default GetFeedback

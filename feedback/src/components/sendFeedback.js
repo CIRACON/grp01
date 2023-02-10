@@ -27,10 +27,21 @@ function SendFeedback({empId, mgrId}){
         <>
         <h3>Enter Feedback</h3>
         <form onSubmit={sendFeedback} >
-        <input type={"text"} value={message} onChange={messageHandler} />
+        <input type={"text"} value={message} onChange={messageHandler} style={styles.input}/>
         <button type={"submit"}>Send</button>
         </form>
         </>
     )
 }
+
+const styles={
+    input:{
+        width:"80%",
+        border:"none",
+        borderBottom:"solid 1px black",
+        outline:'none',
+        margin:'5px'
+    }
+}
+
 export default SendFeedback

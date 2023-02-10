@@ -30,6 +30,7 @@ const styles = {
         fontSize: "1.1em",
         padding: "10px",
         margin: "10px",
+        width: "50%"
     }
 }
 export default GetFeedback

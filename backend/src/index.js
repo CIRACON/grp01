@@ -84,10 +84,6 @@ app.get("/feedback", (req, res) => {
     dao.getFeedback((result) => {
         res.send(result.feedbacks)
     })
-    // dao.call("findallfeedbacks", {}, (result) => {
-    //     console.log(result.status)
-    //     res.send(result.feedbacks)
-    // })
 })
 
 app.get("/findallfeedbacks", (req, res) => {

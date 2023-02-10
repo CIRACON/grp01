@@ -26,7 +26,8 @@ module.exports.postFeedback = async function (requestBody, callback) {
     await feedbackCollection.insertOne({
         "text": requestBody.text,
         "employeeID": requestBody.employeeID,
-        "managerID": requestBody.managerID
+        "managerID": requestBody.managerID,
+        "sender": requestBody.sender
     }).then(
         (result) => { callback({ status: "feedback added" }) },
         (reason) => { callback({ status: "error when adding feedback" }) }
@@ -46,9 +47,9 @@ module.exports.getInitEmployees = async function (callback) {
 
 module.exports.getInitFeedback = async function (callback) {
     const initialRecords = [
-        { "text": "qwerty asdf asdf", "employeeID": 1, "managerID": 2},
-        { "text": "asdf asdf qwerty", "employeeID": 3, "managerID": 4},
-        { "text": "asdf qwerty asdf", "employeeID": 5, "managerID": 6}
+        { "text": "qwerty asdf asdf", "employeeID": 1, "managerID": 2, "sender": 1},
+        { "text": "asdf asdf qwerty", "employeeID": 3, "managerID": 4, "sender": 3},
+        { "text": "asdf qwerty asdf", "employeeID": 5, "managerID": 6, "sender": 5}
     ];
     await feedbackCollection.insertMany(initialRecords).then(
         (result) => { callback({ status: "feedback records have been initialized."})},

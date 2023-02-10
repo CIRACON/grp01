@@ -106,6 +106,6 @@ module.exports.call = async function call(operation, parameters, callback) {
             break;
     }
     console.log( 'call complete: ' + operation );
-    client.close();
+    //client.close();
     return 'call complete';
 }

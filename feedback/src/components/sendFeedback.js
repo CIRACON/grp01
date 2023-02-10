@@ -19,8 +19,8 @@ function SendFeedback({empId, mgrId}){
                 body:JSON.stringify(feedback)
             })
             console.log()
-        }catch{
-            console.log("Could not post feedback.")
+        }catch (ex){
+            console.log("Could not post feedback.",ex)
         }
     }
     return(

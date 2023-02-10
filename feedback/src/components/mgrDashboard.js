@@ -22,7 +22,7 @@ function MgrDashboard(){
             <div style={styles.employee} key={i}>
                 <h2>Employee {i}</h2>
                 <GetFeedback id={emp} type={"employee"} />
-                <SendFeedback mgrId={id} empId={emp} />
+                <SendFeedback mgrId={id} empId={emp} sender={id}/>
             </div>
         )}
         </div>

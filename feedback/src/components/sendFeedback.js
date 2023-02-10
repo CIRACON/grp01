@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react'
 
-function SendFeedback({empId, mgrId}){
+function SendFeedback({empId, mgrId,sender}){
     const [message, setMessage]=useState("")
     const messageHandler=(event)=>{
         setMessage(event.target.value)
@@ -9,7 +9,8 @@ function SendFeedback({empId, mgrId}){
         const feedback={
             "text":message,
             "employeeID":+empId,
-            "managerID":+mgrId
+            "managerID":+mgrId,
+            "sender":+sender
         }
         let url="http://localhost:3001/feedback"
         try{

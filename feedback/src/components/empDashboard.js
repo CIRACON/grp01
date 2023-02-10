@@ -17,7 +17,7 @@ function EmpDashboard(){
         <h1>{pid}</h1>
         <GetFeedback id={pid} type={"employee"}/>
         <div style={styles.section}>
-        <SendFeedback empId={pid} mgrId={mId}/>
+        <SendFeedback empId={pid} mgrId={mId} sender={pid}/>
         </div>
         </div>
     )

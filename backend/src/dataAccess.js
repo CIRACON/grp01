@@ -72,5 +72,12 @@ module.exports.getEmployees = async function (callback) {
 }
 
 module.exports.postNewEmployee = async function(id, managerID, callback) {
-    callback({employee: await associationCollection.insertOne({"id": +id, "managerID": +managerID})})
+    await associationCollection.insertOne({
+        "id": +id,
+        "managerID": +managerID,
+    }).then(
+        (result) => { callback({ status: "employee added" }) },
+        (reason) => { callback({ status: "error when adding employee" }) }
+    )
+    //callback({employee: await associationCollection.insertOne({"id": +id, "managerID": +managerID})})
 }

@@ -40,19 +40,39 @@ function NewLogin(){
     }
     const userRedirect=()=>{window.location = `/employee/${empId}`}
     return(
-        <>
+        <div style={styles.container}>
         <h1>Create user profile</h1>
         <form onSubmit={(e)=>{e.preventDefault();createUser();userRedirect()}}>
-        <label>Password</label><br/>
-        <input type={"text"} value={password} onChange={pChangeHandler}/>
+        <label style={styles.label}>Password</label><br/>
+        <input type={"text"} value={password} onChange={pChangeHandler} style={styles.input}/>
         <br/>
-        <label>Manager's ID</label><br/>
-        <input type={"text"} value={mgrId} onChange={mgrIdHandler}/>
+        <label style={styles.label}>Manager's ID</label><br/>
+        <input type={"text"} style={styles.input} value={mgrId} onChange={mgrIdHandler}/>
         <br/>
-        <button type={"submit"}>Create user</button>
+        <button type={"submit"} style={styles.button}>Create user</button>
         </form>
-        </>
+        </div>
     )
+}
+
+const styles={
+    container:{
+        margin:"5px",
+        padding:"5px",
+    },
+    label:{
+        padding:"5px",
+        margin:"5px"
+    },
+    input:{
+        width:"30%",
+        padding:"5px",
+        margin:"5px"
+    },
+    button:{
+        fontWeight:"bold",
+        marginLeft:"10px"
+    }
 }
 
 export default NewLogin

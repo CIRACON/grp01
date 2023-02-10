@@ -51,65 +51,55 @@ app.get("/employeesof/:id", function(req, res) {
     }))
 })
 
-// // TODO: split into two requests, one for manager and one for employee, for feedback
-// app.get('/:employeeType/:id', function(req, res) {
-//     if (req.params.employeeType !== 'manager' || req.params.employeeType !== 'employee') {
-//         res.statusCode = 404
-//         res.end()
-//         return
-//     }
-//     let feedbackResults = dao.call('findfeedback', {"workerID": req.params.id})
-// })
-
 app.post("/feedback", (req, res) => {
     if (req.body === undefined) {
-        res.statusCode = 500;
-        res.end();
-        return;
+        res.statusCode = 500
+        res.end()
+        return
     }
-    // make call to db
-    //dao.call('postfeedback', {feedback: req.body}, (result) => {
-    dao.call(req.body, (result) => {
-        if (result.status !== undefined) {
-            res.send(result.status);
-        } else {
-            res.statusCode = 500;
-            res.end();
+    dao.postFeedback(req.body, (result) => {
+        if (result.status === undefined) {
+            res.statusCode = 500
+            res.end()
+            return
         }
-    });
-});
-
-app.get("/initemployees", (req, res) => {
-    dao.call("initemployees", {}, (result) => {
-        console.log(result.status)
-        res.send("init complete")
+        res.send(result.status)
     })
 })
 
-app.get("/findallfeedbacks", (req, res) => {
-    dao.call("findallfeedbacks", {}, (result) => {
-        console.log(result.status)
-        res.send(result.feedbacks)
+app.get("/initemployees", (req, res) => {
+    dao.getInitEmployees(() => {
+        res.send("init complete")
     })
 })
 
 app.get("/initfeedbacks", (req, res) => {
-    dao.call("initfeedbacks", {}, (result) => {
-        console.log(result.status)
+    dao.getInitFeedback(() => {
         res.send("init complete")
     })
 })
 
-app.get("/employees", (req, res) => {
-    dao.call("employees", {}, (result) => {
-        if (result.employees !== undefined) {
-            res.send(result.employees)
-        }
-        else {
-            res.statusCode = 404
-            res.end()
-        }
+// I know it's duplicate code, just leaving this in as a shim
+app.get("/feedback", (req, res) => {
+    dao.getFeedback((result) => {
+        res.send(result.feedbacks)
     })
+    // dao.call("findallfeedbacks", {}, (result) => {
+    //     console.log(result.status)
+    //     res.send(result.feedbacks)
+    // })
+})
+
+app.get("/findallfeedbacks", (req, res) => {
+        dao.getFeedback((result) => {
+        res.send(result.feedbacks)
+    })
+})
+
+app.get("/employees", (req, res) => {
+    dao.getEmployees((result => {
+        res.send(result.employees)
+    }))
 })
 
 app.post("/newemployee", (req, res) => {
@@ -117,17 +107,14 @@ app.post("/newemployee", (req, res) => {
         res.statusCode = 500
         res.end()
     }
-    else {
-        dao.call('newemployee', {"id": req.body.id, "managerID": req.body.managerID}, (result) => {
-            if (result.status !== undefined) {
-                res.send(result.status)
-            }
-            else {
-                res.statusCode = 500
-                res.end()
-            }
-        })
-    }
+    dao.getNewEmployee(req.body.id, req.body.managerID, (result) => {
+        if (result.status === undefined) {
+            res.statusCode = 500
+            res.end()
+            return
+        }
+        res.send(result.status)
+    })
 })
 
 app.listen(3001) // open port for page

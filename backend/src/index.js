@@ -7,6 +7,8 @@ const dao = require("./dataAccess") // database access object
 app.use(express.json()) // parse JSON body
 app.use(cors())
 
+dao.connectToServer() // establish connection, guaranteed. Not sure why it works without explicitly declaring that
+
 app.get("/employee/:id", function(req, res) {
     if (req.params.id === undefined) {
         res.statusCode = 404

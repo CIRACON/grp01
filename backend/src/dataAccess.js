@@ -6,6 +6,10 @@ const db = client.db("feedback");
 const feedbackCollection = db.collection("feedback");
 const associationCollection = db.collection("associations"); // employees/managers. TODO: rename everywhere to workerCollection if DB is updated also?
 
+module.exports.connectToServer = async function() {
+    await client.connect() // connect to the server. Remember to close open connections later
+}
+
 module.exports.getEmployeeById = async function(id, callback) {
     callback({employee: await associationCollection.findOne({"id": +id})})
 }
@@ -35,6 +39,8 @@ module.exports.postFeedback = async function (requestBody, callback) {
 }
 
 module.exports.getInitEmployees = async function (callback) {
+    //connectAndRunThenDisconnect()
+    await client.connect()
     const initialAssociations = [
         {"id": 1, "managerID": 2},
         {"id": 2, "managerID": null}
@@ -43,6 +49,7 @@ module.exports.getInitEmployees = async function (callback) {
         (result) => { callback({ status: "association records have been initialized."})},
         (reason) => { callback({ status: "error initializing association records"})}
     );
+    await client.close()
 }
 
 module.exports.getInitFeedback = async function (callback) {

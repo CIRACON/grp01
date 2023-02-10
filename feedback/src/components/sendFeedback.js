@@ -29,7 +29,7 @@ function SendFeedback({empId, mgrId,sender}){
         <h3>Enter Feedback</h3>
         <form onSubmit={sendFeedback} >
         <input type={"text"} value={message} onChange={messageHandler} style={styles.input}/>
-        <button type={"submit"}>Send</button>
+        <button type={"submit"} style={styles.button}>Send</button>
         </form>
         </>
     )
@@ -41,7 +41,13 @@ const styles={
         border:"none",
         borderBottom:"solid 1px black",
         outline:'none',
-        margin:'5px'
+        margin:'5px',
+        fontSize:"1.1em"
+    },
+    button:{
+        fontWeight:"bold",
+        marginLeft:"10px",
+        fontSize:"1.1em"
     }
 }
 

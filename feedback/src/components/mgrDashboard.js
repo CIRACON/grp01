@@ -15,13 +15,13 @@ function MgrDashboard(){
     console.log(empIds)
     return(
         <div style={styles.container}>
-        <h1>{id}</h1>
+        <h1>Welcome to Kusema, the anonymous feedback app!</h1>
         {empIds.map((emp,i)=> /*theoretically: make div for 
             each employee under the manager and get/send
             feedback comopnents for each*/
             <div style={styles.employee} key={i}>
-                <h2>Employee {i}</h2>
-                <GetFeedback id={emp} type={"employee"} />
+                <h2>Anonymous Employee {i+1}</h2>
+                <GetFeedback id={emp} type={"employee"} viewerID={+id}/>
                 <SendFeedback mgrId={id} empId={emp} sender={id}/>
             </div>
         )}

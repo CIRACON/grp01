@@ -14,8 +14,8 @@ function EmpDashboard() {
     }, [])
     return (
         <div style={styles.container}>
-            <h1>{pid}</h1>
-            <GetFeedback id={+pid} type={"employee"} />
+            <h1>Welcome to Kusema, the anonymous feedback app!</h1>
+            <GetFeedback id={+pid} type={"employee"} viewerID={+pid} />
             <div style={styles.section}>
                 <SendFeedback empId={pid} mgrId={mId} sender={pid} />
             </div>
@@ -30,9 +30,9 @@ const styles = {
         border: "1px solid black"
     },
     container: {
-        margin: "5px",
+        margin: "10px",
         padding: "5px",
-        justifyContent: "center"
+        //justifyContent: "center"
     }
 }
 export default EmpDashboard

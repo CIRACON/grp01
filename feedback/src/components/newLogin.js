@@ -6,16 +6,16 @@ function NewLogin(){
     const [mgrId, setMgrId]  = useState("")
     const pChangeHandler = (event) =>{setPassword(event.target.value)}
     const mgrIdHandler = (event) =>{setMgrId(event.target.value)}
+    let newEmp;
     async function createUser(){
         const postUrl= 'http://localhost:3001/newemployee'
         const getUrl = 'http://localhost:3001/employees'
-        let newEmp;
+        
         try{
             let allEmps = await fetch(getUrl)
                 .then(res=>res.json())
                 console.log(allEmps.length)
                 const maxID=Math.max(...allEmps.map(e=>e.id))
-                console.log({maxID})
                 setEmpId(maxID+1)
         
         newEmp={
@@ -38,7 +38,7 @@ function NewLogin(){
         }
         
     }
-    const userRedirect=()=>{window.location = `/employee/${empId}`}
+    const userRedirect=()=>{window.location = `/employee/${newEmp.id}`}
     return(
         <div style={styles.container}>
         <h1>Create user profile</h1>

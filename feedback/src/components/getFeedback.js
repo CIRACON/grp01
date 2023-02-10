@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 
-function GetFeedback({ id, type }) {
+function GetFeedback({ id, type,viewerID }) {
     const [feedbackList, setFeedbackList] = useState([])
     useEffect(() =>
         async function getFeedback() {
@@ -20,7 +20,7 @@ function GetFeedback({ id, type }) {
     return (
         <>
             <ul>
-                {feedbackList?.map((message, i) => <li key={i} style={message.sender===id?styles.empMessage:styles.message}>{message.text}</li>)}
+                {feedbackList?.map((message, i) => <li key={i} style={message.sender===viewerID?styles.empMessage:styles.message}>{message.text}</li>)}
             </ul>
         </>
     )

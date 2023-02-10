@@ -2,16 +2,19 @@
         {
             "text": "asdf asdf asdf",
             "employeeID": 1,
-            "managerID": 2
+            "managerID": 2,
+            "sender": 1
         },
         {
             "text": "asdf asdf asdf",
             "employeeID": 3,
-            "managerID": 4
+            "managerID": 4,
+            "sender": 3
         },
         {
             "text": "asdf asdf asdf",
             "employeeID": 5,
-            "managerID": 6
+            "managerID": 6,
+            "sender": 5
         }
 ]

@@ -43,7 +43,11 @@ module.exports.getInitEmployees = async function (callback) {
     await client.connect()
     const initialAssociations = [
         {"id": 1, "managerID": 2},
-        {"id": 2, "managerID": null}
+        {"id": 2, "managerID": null},
+        {"id": 3, "managerID": 4},
+        {"id": 4, "managerID": null},
+        {"id": 5, "managerID": 6},
+        {"id": 6, "managerID": null}
     ]
     await associationCollection.insertMany(initialAssociations).then(
         (result) => { callback({ status: "association records have been initialized."})},

@@ -30,7 +30,8 @@ const styles = {
         fontSize: "1.1em",
         padding: "10px",
         margin: "10px",
-        width: "50%"
+        width: "50%",
+        listStyleType:"none"
     }
 }
 export default GetFeedback

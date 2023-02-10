@@ -14,7 +14,7 @@ function MgrDashboard(){
     },[])
     console.log(empIds)
     return(
-        <>
+        <div style={styles.container}>
         <h1>{id}</h1>
         {empIds.map((emp,i)=> /*theoretically: make div for 
             each employee under the manager and get/send
@@ -25,7 +25,7 @@ function MgrDashboard(){
                 <SendFeedback mgrId={id} empId={emp} />
             </div>
         )}
-        </>
+        </div>
     )
 }
 const styles={
@@ -33,8 +33,14 @@ const styles={
         fontSize: "1.1em",
         padding: "10px",
         margin: "10px",
-        border: "1px solid darkblue"
-    }
+        border: "1px solid darkblue",
+        width:"80%",
+    },
+    container:{
+        margin:"10px",
+        marginRight:"5%",
+        padding:"5px"
+    },
 }
 
 export default MgrDashboard

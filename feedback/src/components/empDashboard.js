@@ -13,13 +13,13 @@ function EmpDashboard(){
         setMId(target.managerID)//get manager Id from response
     },[])
     return(
-        <>
+        <div style={styles.container}>
         <h1>{pid}</h1>
         <GetFeedback id={pid} type={"employee"}/>
         <div style={styles.section}>
         <SendFeedback empId={pid} mgrId={mId}/>
         </div>
-        </>
+        </div>
     )
 }
 const styles={
@@ -27,7 +27,12 @@ const styles={
         fontSize: "1.1em",
         padding: "10px",
         margin: "10px",
-        border: "1px solid darkblue"
+        border: "1px solid black"
+    },
+    container:{
+        margin:"5px",
+        padding:"5px",
+        justifyContent:"center"
     }
 }
 export default EmpDashboard

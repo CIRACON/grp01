@@ -63,6 +63,6 @@ module.exports.getEmployees = async function (callback) {
     callback({employees: await associationCollection.find({}).toArray()})
 }
 
-module.exports.getNewEmployee = async function(id, managerID, callback) {
+module.exports.postNewEmployee = async function(id, managerID, callback) {
     callback({employee: await associationCollection.insertOne({"id": +id, "managerID": +managerID})})
 }

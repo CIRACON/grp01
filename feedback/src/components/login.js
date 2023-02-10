@@ -17,6 +17,7 @@ function Login(){
     return(
         <div style={styles.container}>
         <h1>Login</h1>
+        <div style={styles.form}>
         <label style={styles.label}>Employee ID</label><br/>
         <input type={"text"} value={empId} onChange={eChangeHandler} style={styles.input}/>
         <br/>
@@ -27,7 +28,7 @@ function Login(){
         <input type={"text"} value={password} onChange={pChangeHandler} style={styles.input}/>
         <br/>
         <input type={"button"} style={styles.button} value={"Login"} onClick={()=>loginHandler(empType, empId)}/>
-        
+        </div>
         <h3>New User?</h3>
         <button style={styles.button} onClick={()=>window.location = `/newUser`}>Create employee profile</button>
 
@@ -36,21 +37,28 @@ function Login(){
 }
 const styles={
     container:{
-        margin:"5px",
+        margin:"10px",
         padding:"5px",
+        fontSize:"1.1em",
+        marginLeft:"25%"
     },
     label:{
         padding:"5px",
-        margin:"5px"
+        margin:"5px",
     },
     input:{
-        width:"30%",
+        width:"90%",
         padding:"5px",
         margin:"5px"
     },
     button:{
         fontWeight:"bold",
         marginLeft:"10px"
+    },
+    form:{
+        border:"solid 1px black",
+        padding:"10px",
+        width:"50%"
     }
 }
 

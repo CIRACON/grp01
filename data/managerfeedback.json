@@ -1,18 +1,18 @@
 [
         {
-            "text": "asdf asdf asdf",
+            "text": "Good job leading the standup this morning. There were some hard questions.",
             "employeeID": 1,
             "managerID": 2,
             "sender": 1
         },
         {
-            "text": "asdf asdf asdf",
+            "text": "Can we allocate more time in standups for specific user stories?",
             "employeeID": 3,
             "managerID": 4,
             "sender": 3
         },
         {
-            "text": "asdf asdf asdf",
+            "text": "Can we have shorter standups and longer lunch breaks?",
             "employeeID": 5,
             "managerID": 6,
             "sender": 5

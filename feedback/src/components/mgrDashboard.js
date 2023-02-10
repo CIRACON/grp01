@@ -16,9 +16,7 @@ function MgrDashboard(){
     return(
         <div style={styles.container}>
         <h1>Welcome to Kusema, the anonymous feedback app!</h1>
-        {empIds.map((emp,i)=> /*theoretically: make div for 
-            each employee under the manager and get/send
-            feedback comopnents for each*/
+        {empIds.map((emp,i)=>
             <div style={styles.employee} key={i}>
                 <h2>Anonymous Employee {i+1}</h2>
                 <GetFeedback id={emp} type={"employee"} viewerID={+id}/>
@@ -35,12 +33,14 @@ const styles={
         margin: "10px",
         border: "1px solid darkblue",
         width:"80%",
+        borderRadius:"3px"
     },
     container:{
         margin:"10px",
         marginRight:"5%",
+        marginLeft:"10%",
         padding:"5px"
-    },
+    }
 }
 
 export default MgrDashboard

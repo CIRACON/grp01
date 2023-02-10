@@ -31,17 +31,22 @@ const styles = {
         fontSize: "1.1em",
         padding: "10px",
         margin: "10px",
-        width: "50%",
-        listStyleType:"none"
+        width: "80%",
+        listStyleType:"none",
+        justifySelf:"left"
     },
     empMessage: {
         border: 'solid 1px black',
         fontSize: "1.1em",
         padding: "10px",
         margin: "10px",
-        width: "50%",
+        width: "80%",
         listStyleType:"none",
-        backgroundColor:"lightblue"
+        backgroundColor:"lightblue",
+        justifySelft:"right"
+    },
+    container:{
+        display:"flex"
     }
 }
 export default GetFeedback

@@ -44,8 +44,8 @@ function NewLogin(){
         window.location = `/employee/${newEmp.id}`}
     return(
         <div style={styles.container}>
-        <h1>Create user profile</h1>
-        <form onSubmit={(e)=>{e.preventDefault();createUser()}}>
+        <h1>Create employee profile</h1>
+        <form style={styles.form} onSubmit={(e)=>{e.preventDefault();createUser()}}>
         <label style={styles.label}>Password</label><br/>
         <input type={"text"} value={password} onChange={pChangeHandler} style={styles.input}/>
         <br/>
@@ -61,6 +61,7 @@ function NewLogin(){
 const styles={
     container:{
         margin:"5px",
+        marginLeft:"25%",
         padding:"5px",
     },
     label:{
@@ -68,13 +69,18 @@ const styles={
         margin:"5px"
     },
     input:{
-        width:"30%",
+        width:"90%",
         padding:"5px",
         margin:"5px"
     },
     button:{
         fontWeight:"bold",
         marginLeft:"10px"
+    },
+    form:{
+        border:"solid 1px black",
+        padding:"10px",
+        width:"50%"
     }
 }
 

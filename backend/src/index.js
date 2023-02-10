@@ -84,10 +84,6 @@ app.get("/feedback", (req, res) => {
     dao.getFeedback((result) => {
         res.send(result.feedbacks)
     })
-    // dao.call("findallfeedbacks", {}, (result) => {
-    //     console.log(result.status)
-    //     res.send(result.feedbacks)
-    // })
 })
 
 app.get("/findallfeedbacks", (req, res) => {
@@ -107,7 +103,7 @@ app.post("/newemployee", (req, res) => {
         res.statusCode = 500
         res.end()
     }
-    dao.getNewEmployee(req.body.id, req.body.managerID, (result) => {
+    dao.postNewEmployee(req.body.id, req.body.managerID, (result) => {
         if (result.status === undefined) {
             res.statusCode = 500
             res.end()

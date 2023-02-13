@@ -80,7 +80,8 @@ const styles={
     form:{
         border:"solid 1px black",
         padding:"10px",
-        width:"50%"
+        width:"50%",
+        borderRadius:"5px"
     }
 }
 

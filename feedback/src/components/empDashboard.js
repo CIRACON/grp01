@@ -30,6 +30,7 @@ const styles = {
         margin: "10px",
         border: "1px solid darkblue",
         width:"80%",
+        borderRadius:'3px'
     },
     container:{
         margin:"10px",

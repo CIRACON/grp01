@@ -33,7 +33,8 @@ const styles = {
         margin: "10px",
         width: "80%",
         listStyleType:"none",
-        justifySelf:"left"
+        justifySelf:"left",
+        borderRadius:"2px"
     },
     empMessage: {
         border: 'solid 1px black',
@@ -43,7 +44,8 @@ const styles = {
         width: "80%",
         listStyleType:"none",
         backgroundColor:"lightblue",
-        justifySelft:"right"
+        justifySelft:"right",
+        borderRadius:"2px"
     },
     container:{
         display:"flex"

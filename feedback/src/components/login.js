@@ -25,7 +25,7 @@ function Login(){
         <input type={"text"} value={empType} onChange={empChangeHandler} style={styles.input}/>
         <br/>
         <label style={styles.label}>Password</label><br/>
-        <input type={"text"} value={password} onChange={pChangeHandler} style={styles.input}/>
+        <input type={"password"} value={password} onChange={pChangeHandler} style={styles.input}/>
         <br/>
         <input type={"button"} style={styles.button} value={"Login"} onClick={()=>loginHandler(empType, empId)}/>
         </div>

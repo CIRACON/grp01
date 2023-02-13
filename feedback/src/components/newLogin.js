@@ -47,7 +47,7 @@ function NewLogin(){
         <h1>Create employee profile</h1>
         <form style={styles.form} onSubmit={(e)=>{e.preventDefault();createUser()}}>
         <label style={styles.label}>Password</label><br/>
-        <input type={"text"} value={password} onChange={pChangeHandler} style={styles.input}/>
+        <input type={"password"} value={password} onChange={pChangeHandler} style={styles.input}/>
         <br/>
         <label style={styles.label}>Manager's ID</label><br/>
         <input type={"text"} style={styles.input} value={mgrId} onChange={mgrIdHandler}/>
